@@ -19,3 +19,24 @@ class LinkedList:
             self.tail = node
         self.head = node
         return node
+
+    def pop_tail(self):
+        if self.tail is None:
+            raise IndexError("pop from empty list")
+        value = self.tail.value
+        if self.tail.previous is not None:
+            self.tail.previous.next = None
+        else:
+            self.head = None
+        self.tail = self.tail.previous
+        return value
+
+    def remove(self, node):
+        if node.previous is not None:
+            node.previous.next = node.next
+        else:
+            self.head = node.next
+        if node.next is not None:
+            node.next.previous = node.previous
+        else:
+            self.tail = node.previous
