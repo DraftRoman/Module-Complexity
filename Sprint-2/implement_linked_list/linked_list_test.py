@@ -33,6 +33,17 @@ class LinkedListTest(unittest.TestCase):
         self.assertEqual(l.tail, b)
         self.assertIsNone(b.next)
         self.assertIsNone(b.previous)
+        
+    def test_remove_head(self):
+        l = LinkedList()
+        a = l.push_head("a")
+        b = l.push_head("b")
+        l.remove(b)
+        self.assertEqual(l.head, a)
+        self.assertEqual(l.tail, a)
+        self.assertIsNone(a.next)
+        self.assertIsNone(a.previous)
+
 
 
 if __name__ == "__main__":
