@@ -1,4 +1,4 @@
-from typing import List
+from functools import lru_cache
 from coin import Coin
 
 COINS = [
@@ -18,35 +18,24 @@ def ways_to_make_change(total: int) -> int:
     Given access to coins with the values 1, 2, 5, 10, 20, 50, 100, 200,
     returns the number of ways to make the total.
     """
-    return ways_to_make_change_helper(total, COINS)
+    @lru_cache(maxsize=None)
+    def helper(remaining: int, index: int) -> int:
+        
+        if remaining == 0:
+            return 1
+        
+        if index == len(COINS):
+            return 0
 
+        ways = 0
+        coin = COINS[index]
 
-def ways_to_make_change_helper(total: int, coins: List[Coin]) -> int:
-    
-    if total == 0:
-        return 1
+        max_count = remaining 
 
+        for count in range(max_count + 1):
+            new_remaining = remaining - count * coin.value
+            ways += helper(new_remaining, index + 1)
 
-    if len(coins) == 0:
-        return 0
+        return ways
 
-    ways = 0
-
-    for coin_index in range(len(coins)):
-        coin = coins[coin_index]
-        count_of_coin = 1
-
-        while coin.value * count_of_coin <= total:
-            total_from_coins = coin.value * count_of_coin
-
-            if total_from_coins == total:
-                ways += 1
-            else:
-                ways += ways_to_make_change_helper(
-                    total - total_from_coins,
-                    coins[coin_index + 1:]
-                )
-
-            count_of_coin += 1
-
-    return ways
+    return helper(total, 0)

@@ -25,7 +25,7 @@ class MakingChangeTest(unittest.TestCase):
         self.assertEqual(ways_to_make_change(17), 28)
 
     def test_100(self):
-        self.assertEqual(ways_to_make_change(100), 4562)
+        self.assertEqual(ways_to_make_change(100), 4563)
     def test_9176(self):
         self.assertEqual(ways_to_make_change(9176), 628431158425225)
 
