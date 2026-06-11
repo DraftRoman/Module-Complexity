@@ -18,6 +18,8 @@ class FibonacciTest(unittest.TestCase):
     def test_10(self):
         self.assertEqual(fibonacci(10), 55)
 
+    def test_50(self):
+        self.assertEqual(fibonacci(50), 12586269025)
     def test_200(self):
         self.assertEqual(fibonacci(200), 280571172992510140037611932413038677189525)
 
