@@ -1,4 +1,12 @@
-def fibonacci(n):
-    if n <= 1:
-        return n
-    return fibonacci(n - 1) + fibonacci(n - 2)
+class Fibonacci:
+    def __init__(self):
+        self.cache = {0: 0, 1: 1}
+
+    def __call__(self, n):
+        if n in self.cache:
+            return self.cache[n]
+
+        self.cache[n] = self(n - 1) + self(n - 2)
+        return self.cache[n]
+
+fibonacci = Fibonacci()
